@@ -1,0 +1,30 @@
+{% extends "base.html" %}{% block title %}{{ topic.title }}{% endblock %}
+{% load menu_tags %}{% block breadcrumb %}{% show_breadcrumb "menu/breadcrumb_topic_detail.html" %}{% endblock %}
+{% block content %}
+<h1>{{ topic.title }}</h1>
+<div id="posts">
+  <div class="topic">
+    <div class="topic-creator">{{ topic.creator }}</div>
+    <div class="topic-created">{{ topic.created }}</div>
+    <div class="topic-body">{{ topic.body }}</div>
+  </div>
+{% if posts.object_list %}
+  {% for post in posts.object_list %}
+  <div class="post">
+    <div class="post-body">{{ post.body }}</div>
+    <div class="post-creator"><a href="">{{ post.creator }}</a></div>
+    <div class="post-created">{{ post.created }}</div>
+  </div>
+  {% if user.username == post.creator or perms.comments.can_moderate %}
+    <div class="edit-comment">
+      <a href="">Delete</a>
+    </div>
+  {% endif %}
+  {% endfor %}
+  {% include "pagination/pagination.html" with items=posts %}
+</div>
+{% endif %}
+<div id="add-post">
+{% if user.is_authenticated %}{% if form %}{% include 'forum/add_post.html' %}{% endif %}{% else %}Login to post.{% endif %}
+</div>
+{% endblock %}

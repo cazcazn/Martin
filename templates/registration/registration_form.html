@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}Register{% endblock %}{% block content %}
+<form action="" method="post">{% csrf_token %}
+{% for field in form %}{% include "forms/generic.html" %}{% endfor %}
+<input type="submit" value="Register" />
+</form>
+{% endblock content %}

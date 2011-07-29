@@ -1,0 +1,21 @@
+{% extends "base.html" %}{% block title %}Forum{% endblock %}{% block content %}
+<h1>Forum</h1>
+<div id="forums">
+  <table border="0" width="100%">
+    <tr class="table-header">
+      <td>Forum</td>
+      <td>Topics</td>
+      <td>Posts</td>
+      <td>Last Post</td>
+    </tr>
+    {% for forum in forums %}
+    <tr>
+      <td><a href="{{ forum.pk }}">{{ forum.title }}</a></td>
+      <td>{{ forum.num_topics }}</td>
+      <td>{{ forum.num_posts }}</td>
+      <td>{% ifequal forum.get_last_post None %}Nothing has been posted yet.{% else %}By {{ forum.get_last_post.creator.username }} {{ forum.get_last_post.created|timesince }} ago. {% endifequal %}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

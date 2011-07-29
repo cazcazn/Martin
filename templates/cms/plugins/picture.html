@@ -1,0 +1,6 @@
+<div class="image{% if picture.float %} {{ picture.float }}{% endif %}">
+{% if link %}<a href="{{ link }}">{% endif %}
+<img alt="{{ picture.alt }}" src="{{ picture.image.url }}" />
+<div>{{ picture.longdesc }}</div>
+{% if link %}</a>{% endif %}
+</div>

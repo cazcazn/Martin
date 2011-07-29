@@ -1,0 +1,6 @@
+{% load cms_tags %}
+<form method="post" action="/comment/{{ item_type }}/{{ item_id }}/">{% csrf_token %}
+  {{ form.non_field_errors }}
+  {% for field in form %}{% include "forms/generic.html" %}{% endfor %}
+  <input type="submit" value="{% block add_comment_button_text %}Comment{% endblock %}" />
+</form>

@@ -1,0 +1,1 @@
+Thank you for registering with MartinBercovici.org. Your activation key is {{ activation_key }}. This key will be valid for half a day only, so please make sure to activate your account before it expires. Please visit www.martinbercovici.org/user/activate/{{ activation_key }}.

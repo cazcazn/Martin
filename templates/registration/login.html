@@ -1,0 +1,18 @@
+{% extends "base.html" %}{% block title %}Login{% endblock %}
+{% load cms_tags %}
+
+{% block content %}{% if user.is_authenticated %}
+You are already logged in!
+{% else %}
+<form method="post" action=".">
+  {% csrf_token %}
+  {% for field in form %}{% include "forms/generic.html" %}{% endfor %}
+  <input type="submit" value="Login" />
+  {{ next }}
+  <input type="hidden" name="next" value="/user/" />
+</form>
+
+<p>Forgot password?<a href="{% url auth_password_reset %}">Reset it</a>!</p>
+<p>Not member? <a href="{% url registration_register %}">Register</a>!</p>
+{% endif %}
+{% endblock %}

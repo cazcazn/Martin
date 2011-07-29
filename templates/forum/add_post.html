@@ -1,0 +1,4 @@
+<form method="post" action="">{% csrf_token %}
+  {% for field in form %}{% include 'forms/generic.html' %}{% endfor %}
+  <input type="submit" value="Post" />
+</form>

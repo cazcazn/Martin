@@ -1,0 +1,5 @@
+[ {"width": "{{ width }}","height": "{{ height }}"},
+  [{{% for photo in photos %}
+    "content": "<div class='slide_inner'><a class='photo_link' href='{{ photo.link }}'><img class='photo' src='{{ photo.get_slideshow_url }}' alt='{{ photo.caption }}'></a><a class='caption' href='{{ photo.link }}'>{{ photo.caption }}</a></div>"}{% if not forloop.last %},{{% endif %}{% endfor %}
+  ]
+]

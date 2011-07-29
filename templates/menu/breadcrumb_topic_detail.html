@@ -1,0 +1,3 @@
+{% include "menu/breadcrumb_gen.html" %}
+<li><a href="{% url forum.views.forum_detail topic.forum.pk %}">{{ topic.forum.title }}</a> &raquo;</li>
+<li>{{ topic.title }}</li>

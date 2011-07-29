@@ -1,0 +1,7 @@
+<ul class="menu nav-menus">
+{% for child in children %}
+{% if child.selected %}<li class="menu-active"><span>{{ child.get_menu_title }}</span></li>
+{% else %}<li><a href="{{ child.get_absolute_url }}">{{ child.get_menu_title }}</a></li>
+{% endif %}
+{% endfor %}
+</ul>

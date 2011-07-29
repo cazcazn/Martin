@@ -1,0 +1,36 @@
+{% load cms_tags menu_tags sekizai_tags %}
+<!DOCTYPE html> 
+<html lang="en" dir="ltr"> 
+ 
+<head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+  <meta name="google-site-verification" content="a9t7NiboAB4jp2xkkVRnI_5Aho3XkqAZJHxEcS5NvGc" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="/media/css/base.css">{% render_block "css" %}
+  <title>{% block title %}{{ request.current_page.get_title }}{% endblock %}</title>{% plugins_media %}
+</head> 
+ 
+<body> 
+  <div id="body-wrapper" class="clearfix"> 
+    <div id="header-wrapper" role="banner" class="clearfix">
+      <div id="left-colour"></div><div id="right-colour"></div>
+      <div id="header-border"></div>
+      <div id="header">
+        <a href="?l=en" title="Home" rel="home" id="logo"></a> 
+        <div id="top-menu-wrapper" class="clearfix"> 
+          <ul class="menu" id="languages-menu"></ul>{% show_menu 0 100 0 1 "menu/top-menu.html" %}</div> <!-- header -->
+      </div> <!-- header-wrapper -->
+    </div> 
+ 
+    <div id="content-wrapper" class="clearfix">
+      <div id="content-frame-wrapper">
+        <div id="content-frame" class="clearfix">
+          <div id="right-menu">{% show_menu_below_id "rightmenu" 0 100 100 100 "menu/right-menu.html" %}</div>
+          {% ifnotequal 'home' request.current_page.get_slug %}<div id="breadcrumb">{% block breadcrumb %}{% show_breadcrumb %}{% endblock %}</div>{% endifnotequal %}<div id="content">{% block content %}{% endblock %}</div><!-- content -->
+         </div><!-- content-frame -->
+      </div><!-- content-frame-wrapper -->
+    </div><!-- content-wrapper -->
+  </div><!-- body-wrapper -->{% render_block "js" %}
+</body> 
+ 
+</html>

@@ -1,0 +1,26 @@
+{% extends "base.html" %}{% block title %}{{ forum.title }}{% endblock %}
+{% load menu_tags %}{% block breadcrumb %}{% show_breadcrumb "menu/breadcrumb_forum_detail.html" %}{% endblock %}
+{% block content %}
+{% if topics.object_list %}
+<div id="forum">
+  <h1>{{ forum.title }}</h1>
+  <table border="0" width="100%">
+    <tr class="table-header">
+      <td>Topic</td>
+      <td>Posts</td>
+      <td>Last Post</td>
+    </tr>
+    {% for topic in topics.object_list %}
+    <tr>
+      <td><a href="topic/{{ topic.pk }}">{{ topic.title }}</a></td>
+      <td>{{ topic.num_posts }}</td>
+      <td>{% ifequal topic.get_last_post None %}Nothing has been posted yet.{% else %}By {{ topic.get_last_post.creator.username }} {{ topic.get_last_post.created|timesince }} ago. {% endifequal %}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% include "pagination/pagination.html" with items=topics %}
+</div>
+{% else %}
+There are no topics yet.
+{% endif %}
+{% endblock %}
